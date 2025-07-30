@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitácora del Departamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="sheet">
+
+        <!-- Fila 1: Encabezado -->
+        <section class="header-left">
+            <h1>BITÁCORA DEL DEPARTAMENTO</h1>
+            <div class="field-group">
+                <span>Turno:</span>
+                <div class="shift-boxes">
+                    <div class="shift">1</div>
+                    <div class="shift">2</div>
+                    <div class="shift">3</div>
+                </div>
+            </div>
+            <div class="field-group">
+                <span>Área:</span>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <section class="header-center">
+            <div class="field-group date-group">
+                <span>Fecha:</span>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <section class="header-right">
+            <div class="sign-block"><span class="sign-title">Realizó</span></div>
+            <div class="sign-block"><span class="sign-title">Revisó</span></div>
+        </section>
+
+        <!-- Fila 2: Calidad -->
+        <section class="quality">
+            <span>CALIDAD</span>
+        </section>
+
+        <!-- Fila 3: Verificación e indicadores -->
+        <section class="verification-row">
+            <div class="verif-left">
+                <span>ESTACIÓN DE VERIFICACIÓN/GP-12/CS-1 (Meta 0):</span>
+            </div>
+            <div class="metrics">
+                <div class="metric"><span>FALTAS:</span></div>
+                <div class="metric"><span>BAJAS:</span></div>
+                <div class="metric"><span>VAC:</span></div>
+                <div class="metric"><span>INC:</span></div>
+                <div class="metric"><span>PSG:</span></div>
+                <div class="metric"><span>PCG:</span></div>
+            </div>
+        </section>
+
+        <!-- Fila 4: Detalles (5 columnas) -->
+        <section class="details-row">
+            <div class="detail-box"><span>SEGURIDAD</span></div>
+            <div class="detail-box"><span>MAQUINA Y FALLA</span></div>
+            <div class="detail-box"><span>T.M</span></div>
+            <div class="detail-box"><span>CORRECCIÓN</span></div>
+            <div class="detail-box"><span>TÉCNICO</span></div>
+        </section>
+
+        <!-- Fila 5: Información general -->
+        <section class="general-info">
+            <span>INFORMACIÓN GENERAL</span>
+        </section>
+
+        <!-- Fila 6: Espacio libre -->
+        <section class="blank-area"></section>
+
+    </main>
+</body>
+</html>

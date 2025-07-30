@@ -1,0 +1,173 @@
+:root {
+    --white: #ffffff;
+    --glow: 0 0 8px #ffffff, 0 0 16px #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--white);
+}
+
+.sheet {
+    position: relative;
+    width: 80vmin;
+    height: 120vmin;
+    margin: 2rem auto;
+    border: 2px solid var(--white);
+    box-shadow: var(--glow);
+    padding: 1rem;
+    display: grid;
+    grid-template-areas:
+        "left    center right"
+        "quality quality quality"
+        "verify  verify  verify"
+        "details details details"
+        "general general general"
+        "blank   blank   blank";
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto 3rem auto 10rem 4rem 1fr;
+    gap: 0.6rem;
+}
+
+/* ─── Encabezado ────────────────────────────────────────────────────────── */
+.header-left { grid-area: left; }
+.header-center { grid-area: center; display: flex; align-items: flex-start; }
+.header-right { 
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+h1 {
+    font-size: 0.9rem;
+    margin: 0 0 0.5rem 0;
+    text-shadow: var(--glow);
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.shift-boxes {
+    display: flex;
+    gap: 0.3rem;
+}
+.shift {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 2px solid var(--white);
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+    box-shadow: var(--glow);
+}
+
+.line {
+    flex: 1;
+    height: 1.6rem;
+    border-bottom: 2px solid var(--white);
+    box-shadow: var(--glow);
+}
+
+.date-group .line {
+    width: 8rem;
+}
+
+.sign-block {
+    width: 6.2rem;
+    height: 2.4rem;
+    border: 2px solid var(--white);
+    display: grid;
+    place-items: center;
+    box-shadow: var(--glow);
+}
+.sign-title {
+    font-size: 0.78rem;
+    text-shadow: var(--glow);
+}
+
+/* ─── Calidad ───────────────────────────────────────────────────────────── */
+.quality {
+    grid-area: quality;
+    border: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    padding-left: 0.6rem;
+    font-size: 0.85rem;
+    box-shadow: var(--glow);
+}
+
+/* ─── Verificación e indicadores ────────────────────────────────────────── */
+.verification-row {
+    grid-area: verify;
+    border: 2px solid var(--white);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0.6rem;
+    gap: 1rem;
+    box-shadow: var(--glow);
+}
+.verif-left span {
+    font-size: 0.84rem;
+}
+
+/* Indicadores */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 0.5rem 0.8rem;
+}
+.metric {
+    min-width: 5.2rem;
+    height: 2.2rem;
+    border: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    padding-left: 0.4rem;
+    font-size: 0.76rem;
+    box-shadow: var(--glow);
+}
+
+/* ─── Detalles 5 columnas ───────────────────────────────────────────────── */
+.details-row {
+    grid-area: details;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+.detail-box {
+    border: 2px solid var(--white);
+    box-shadow: var(--glow);
+    padding: 0.5rem;
+    min-height: 9rem;
+    font-size: 0.78rem;
+}
+
+/* ─── Información general ───────────────────────────────────────────────── */
+.general-info {
+    grid-area: general;
+    border: 2px solid var(--white);
+    box-shadow: var(--glow);
+    display: flex;
+    align-items: center;
+    padding-left: 0.6rem;
+    font-size: 0.85rem;
+}
+
+/* ─── Espacio libre ─────────────────────────────────────────────────────── */
+.blank-area {
+    grid-area: blank;
+    border: 2px solid transparent;
+    margin-top: 0.4rem;
+    height: 100%;
+}
