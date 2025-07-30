@@ -1,0 +1,30 @@
+/* === Ajustes globales === */
+*          { box-sizing: border-box; }
+body       { margin: 0; padding: 24px; background: #000; color: #fff;
+             font-family: "Segoe UI", Arial, sans-serif; }
+
+/* === Efecto glow reutilizable === */
+.glow      { text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 20px #fff; }
+
+/* === Líneas (subrayados) === */
+.underline { height: 1px; background: #fff; box-shadow: 0 0 6px #fff; }
+.long      { width: 220px; }   /* para firmas */
+.xl        { width: 340px; }   /* línea Área */
+.m         { width: 140px; }   /* línea Fecha */
+
+/* === Distribución de filas horizontales === */
+.row-space { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.turnos    { gap: 14px; }
+
+/* === Título === */
+.title     { text-align: center; margin: 26px 0 18px; font-size: 26px; }
+
+/* === Casillas de turno === */
+.check     { cursor: pointer; user-select: none; }
+.check input { accent-color: #fff; transform: scale(1.1); }
+
+/* === Tabla de registro === */
+table.bitacora   { width: 100%; border-collapse: collapse; margin-top: 18px; }
+table.bitacora th,
+table.bitacora td { border: 1px solid #fff; height: 32px; text-align: center; }
+table.bitacora th { background: #000; font-weight: 600; }

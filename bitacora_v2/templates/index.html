@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitácora de Departamento</title>
+    <!-- En modo Flask -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Si abres el archivo directamente, sustituye la línea anterior por:
+    <link rel="stylesheet" href="../static/style.css"> -->
+</head>
+<body>
+    <!-- Encabezado: firmas -->
+    <section class="row-space">
+        <div class="label glow">Realizó:</div>
+        <div class="underline glow long"></div>
+        <div class="label glow">Revisó:</div>
+        <div class="underline glow long"></div>
+    </section>
+
+    <!-- Título central -->
+    <h1 class="title glow">BITÁCORA DE DEPARTAMENTO</h1>
+
+    <!-- Turno -->
+    <section class="row-space turnos">
+        <span class="label glow">Turno:</span>
+        <label class="check glow"><input type="checkbox"> 1</label>
+        <label class="check glow"><input type="checkbox"> 2</label>
+        <label class="check glow"><input type="checkbox"> 3</label>
+    </section>
+
+    <!-- Área y Fecha -->
+    <section class="row-space">
+        <span class="label glow">Área:</span>
+        <div class="underline glow xl"></div>
+        <span class="label glow">Fecha:</span>
+        <div class="underline glow m"></div>
+    </section>
+
+    <!-- Tabla principal (12 filas de ejemplo) -->
+    <table class="bitacora">
+        <thead>
+            <tr>
+                <th class="glow">Hora</th>
+                <th class="glow">Actividad</th>
+                <th class="glow">Observaciones</th>
+                <th class="glow">Firma</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for _ in range(12) %}
+            <tr><td></td><td></td><td></td><td></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
