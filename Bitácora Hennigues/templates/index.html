@@ -3,77 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Bitácora del Departamento</title>
+
+    <!-- Con Flask -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Sin Flask:  <link rel="stylesheet" href="../static/styles.css"> -->
 </head>
 <body>
-    <main class="sheet">
+<main class="sheet">
 
-        <!-- Fila 1: Encabezado -->
-        <section class="header-left">
-            <h1>BITÁCORA DEL DEPARTAMENTO</h1>
-            <div class="field-group">
-                <span>Turno:</span>
-                <div class="shift-boxes">
-                    <div class="shift">1</div>
-                    <div class="shift">2</div>
-                    <div class="shift">3</div>
-                </div>
-            </div>
-            <div class="field-group">
-                <span>Área:</span>
-                <div class="line"></div>
-            </div>
-        </section>
+    <!-- ─── Encabezado ─────────────────────── -->
+    <section class="header-left">
+        <h1>BITÁCORA DEL DEPARTAMENTO</h1>
 
-        <section class="header-center">
-            <div class="field-group date-group">
-                <span>Fecha:</span>
-                <div class="line"></div>
-            </div>
-        </section>
+        <div class="group">
+            <label>Turno:</label>
+            <div class="shift-box"><input type="checkbox"></div>
+            <div class="shift-box"><input type="checkbox"></div>
+            <div class="shift-box"><input type="checkbox"></div>
+        </div>
 
-        <section class="header-right">
-            <div class="sign-block"><span class="sign-title">Realizó</span></div>
-            <div class="sign-block"><span class="sign-title">Revisó</span></div>
-        </section>
+        <div class="group">
+            <label>Área:</label>
+            <input type="text" class="line-input">
+        </div>
+    </section>
 
-        <!-- Fila 2: Calidad -->
-        <section class="quality">
-            <span>CALIDAD</span>
-        </section>
+    <section class="header-center">
+        <label>Fecha:</label>
+        <input type="date" class="date-input">
+    </section>
 
-        <!-- Fila 3: Verificación e indicadores -->
-        <section class="verification-row">
-            <div class="verif-left">
-                <span>ESTACIÓN DE VERIFICACIÓN/GP-12/CS-1 (Meta 0):</span>
-            </div>
-            <div class="metrics">
-                <div class="metric"><span>FALTAS:</span></div>
-                <div class="metric"><span>BAJAS:</span></div>
-                <div class="metric"><span>VAC:</span></div>
-                <div class="metric"><span>INC:</span></div>
-                <div class="metric"><span>PSG:</span></div>
-                <div class="metric"><span>PCG:</span></div>
-            </div>
-        </section>
+    <section class="header-right">
+        <div class="sign"><span>Realizó</span></div>
+        <div class="sign"><span>Revisó</span></div>
+    </section>
 
-        <!-- Fila 4: Detalles (5 columnas) -->
-        <section class="details-row">
-            <div class="detail-box"><span>SEGURIDAD</span></div>
-            <div class="detail-box"><span>MAQUINA Y FALLA</span></div>
-            <div class="detail-box"><span>T.M</span></div>
-            <div class="detail-box"><span>CORRECCIÓN</span></div>
-            <div class="detail-box"><span>TÉCNICO</span></div>
-        </section>
+    <!-- ─── Calidad ─────────────────────────── -->
+    <section class="quality">
+        <label>CALIDAD</label>
+        <textarea rows="2"></textarea>
+    </section>
 
-        <!-- Fila 5: Información general -->
-        <section class="general-info">
-            <span>INFORMACIÓN GENERAL</span>
-        </section>
+    <!-- ─── Estación + Indicadores ──────────── -->
+    <section class="verification">
+        <div class="verif-left">
+            <label>ESTACIÓN DE VERIFICACIÓN / GP‑12 / CS‑1 (Meta 0):</label>
+            <input type="text">
+        </div>
 
-        <!-- Fila 6: Espacio libre -->
-        <section class="blank-area"></section>
+        <div class="metrics">
+            <div><label>FALTAS:</label><input type="number" min="0"></div>
+            <div><label>BAJAS:</label><input type="number" min="0"></div>
+            <div><label>VAC:</label><input type="number" min="0"></div>
+            <div><label>INC:</label><input type="number" min="0"></div>
+            <div><label>PSG:</label><input type="number" min="0"></div>
+            <div><label>PCG:</label><input type="number" min="0"></div>
+        </div>
+    </section>
 
-    </main>
+    <!-- ─── Tabla de detalles (scroll interno) ── -->
+    <section class="details">
+        <table>
+            <thead>
+                <tr>
+                    <th>SEGURIDAD</th>
+                    <th>MÁQUINA Y FALLA</th>
+                    <th>T.M (min)</th>
+                    <th>CORRECCIÓN</th>
+                    <th>TÉCNICO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _ in range(10) %}
+                <tr>
+                    <td contenteditable></td>
+                    <td contenteditable></td>
+                    <td contenteditable></td>
+                    <td contenteditable></td>
+                    <td contenteditable></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ─── Información general ──────────────── -->
+    <section class="general">
+        <label>INFORMACIÓN GENERAL</label>
+        <textarea rows="3"></textarea>
+    </section>
+
+</main>
 </body>
 </html>
