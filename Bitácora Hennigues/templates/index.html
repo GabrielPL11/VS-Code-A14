@@ -1,98 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bitácora del Departamento</title>
-
-    <!-- Con Flask -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Sin Flask:  <link rel="stylesheet" href="../static/styles.css"> -->
+  <meta charset="UTF-8">
+  <title>Bitácora del Departamento</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 <main class="sheet">
 
-    <!-- ─── Encabezado ─────────────────────── -->
-    <section class="header-left">
-        <h1>BITÁCORA DEL DEPARTAMENTO</h1>
+  <!-- FILA 1 -->
+  <div class="title-cell">BITÁCORA DEL DEPARTAMENTO</div>
 
-        <div class="group">
-            <label>Turno:</label>
-            <div class="shift-box"><input type="checkbox"></div>
-            <div class="shift-box"><input type="checkbox"></div>
-            <div class="shift-box"><input type="checkbox"></div>
+  <div class="date-cell">
+    <label for="fecha">FECHA:</label>
+    <input id="fecha" type="date" autocomplete="off">
+  </div>
+
+  <div class="sign-cell">
+    <div class="sign-box">
+      <span>REALIZÓ</span>
+      <select>
+        <option value="">—</option>
+        <option>Gabriel Pulido</option>
+        <option>Alberto Ponce</option>
+        <option>Roberto López</option>
+        <option>Antonio Delgado</option>
+        <option>Andrés Guerrero</option>
+        <option>Rocío Sánchez</option>
+      </select>
+    </div>
+    <div class="sign-box">
+      <span>REVISÓ</span>
+      <select>
+        <option value="">—</option>
+        <option>Gabriel Pulido</option>
+        <option>Alberto Ponce</option>
+        <option>Roberto López</option>
+        <option>Antonio Delgado</option>
+        <option>Andrés Guerrero</option>
+        <option>Rocío Sánchez</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FILA 2 -->
+  <div class="turno-cell">
+    <span>TURN<span class="o-letter">O</span>:</span>
+    <label class="turno-square"><input type="checkbox" value="1"><span>1</span></label>
+    <label class="turno-square"><input type="checkbox" value="2"><span>2</span></label>
+    <label class="turno-square"><input type="checkbox" value="3"><span>3</span></label>
+  </div>
+
+  <div class="area-cell">
+    <label for="btn-area">ÁREA:</label>
+    <div class="area-select" id="area-select">
+      <button type="button" id="btn-area" class="btn-ghost">
+        Seleccionar áreas
+      </button>
+      <div class="chips" id="chips"></div>
+      <div class="dropdown" id="dd-area" aria-hidden="true">
+        <label><input type="checkbox" value="T1XX Silao"> T1XX Silao</label>
+        <label><input type="checkbox" value="T1XX FW"> T1XX FW</label>
+        <label><input type="checkbox" value="PM7 Primarios"> PM7 Primarios</label>
+        <label><input type="checkbox" value="PM7 Secundarios"> PM7 Secundarios</label>
+        <label><input type="checkbox" value="D2UG2-2"> D2UG2-2</label>
+        <div class="dd-actions">
+          <button type="button" id="dd-cerrar" class="btn-ghost small">
+            Cerrar
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="group">
-            <label>Área:</label>
-            <input type="text" class="line-input">
-        </div>
-    </section>
+  <!-- FILA 3 -->
+  <div class="quality-row">
+    <label for="calidad">CALIDAD (cantidad de rechazos en el día):</label>
+    <input id="calidad" type="number" min="0" placeholder="0">
+  </div>
 
-    <section class="header-center">
-        <label>Fecha:</label>
-        <input type="date" class="date-input">
-    </section>
+  <!-- FILA 4 -->
+  <div class="verif-cell">
+    <label for="verif">ESTACIÓN DE VERIFICACIÓN / GP-12 / CS-1 (Meta 0):</label>
+    <input id="verif" type="text" placeholder="N/A">
+  </div>
+  <div class="metrics-cell">
+    <div><span>FALTAS:</span><input type="number" min="0"></div>
+    <div><span>VAC:</span><input type="number" min="0"></div>
+    <div><span>PSG:</span><input type="number" min="0"></div>
+    <div><span>BAJAS:</span><input type="number" min="0"></div>
+    <div><span>INC:</span><input type="number" min="0"></div>
+    <div><span>PCG:</span><input type="number" min="0"></div>
+  </div>
 
-    <section class="header-right">
-        <div class="sign"><span>Realizó</span></div>
-        <div class="sign"><span>Revisó</span></div>
-    </section>
+  <!-- FILA 5 -->
+  <div class="sec-head">SEGURIDAD</div>
+  <div class="sec-body">
+    <label>Accidentes:</label><input type="number" min="0" placeholder="0">
+    <label>Incidentes:</label><input type="number" min="0" placeholder="0">
+    <label>Producción:</label><input type="text" placeholder="">
+  </div>
+  <div class="machine-head">MÁQUINA / FALLA · T.M · CORRECCIÓN · TÉCNICO</div>
+  <div class="machine-body" id="rows-container">
+    <div class="row">
+      <select class="machine-sel">
+        <option>Prensa 1</option><option>Prensa 2</option><option>Prensa 3</option>
+      </select>
+      <select class="fail-sel">
+        <option>Split</option><option>Machucadas</option><option>Rotas</option>
+      </select>
+      <input class="tm-in" type="number" min="0" placeholder="min">
+      <input class="corr-in" type="text" placeholder="Corrección">
+      <select class="tech-sel">
+        <option>Carlos</option><option>Felipe</option><option>Sergio</option><option>Luis</option>
+      </select>
+    </div>
+  </div>
+  <button class="add-row" onclick="addRow()">Añadir Máquina</button>
 
-    <!-- ─── Calidad ─────────────────────────── -->
-    <section class="quality">
-        <label>CALIDAD</label>
-        <textarea rows="2"></textarea>
-    </section>
-
-    <!-- ─── Estación + Indicadores ──────────── -->
-    <section class="verification">
-        <div class="verif-left">
-            <label>ESTACIÓN DE VERIFICACIÓN / GP‑12 / CS‑1 (Meta 0):</label>
-            <input type="text">
-        </div>
-
-        <div class="metrics">
-            <div><label>FALTAS:</label><input type="number" min="0"></div>
-            <div><label>BAJAS:</label><input type="number" min="0"></div>
-            <div><label>VAC:</label><input type="number" min="0"></div>
-            <div><label>INC:</label><input type="number" min="0"></div>
-            <div><label>PSG:</label><input type="number" min="0"></div>
-            <div><label>PCG:</label><input type="number" min="0"></div>
-        </div>
-    </section>
-
-    <!-- ─── Tabla de detalles (scroll interno) ── -->
-    <section class="details">
-        <table>
-            <thead>
-                <tr>
-                    <th>SEGURIDAD</th>
-                    <th>MÁQUINA Y FALLA</th>
-                    <th>T.M (min)</th>
-                    <th>CORRECCIÓN</th>
-                    <th>TÉCNICO</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for _ in range(10) %}
-                <tr>
-                    <td contenteditable></td>
-                    <td contenteditable></td>
-                    <td contenteditable></td>
-                    <td contenteditable></td>
-                    <td contenteditable></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
-
-    <!-- ─── Información general ──────────────── -->
-    <section class="general">
-        <label>INFORMACIÓN GENERAL</label>
-        <textarea rows="3"></textarea>
-    </section>
+  <!-- FILA 6 -->
+  <div class="info-label">INFORMACIÓN GENERAL</div>
+  <textarea class="info-input" rows="4" placeholder="Observaciones generales…"></textarea>
 
 </main>
+
+<script>
+  // Añadir filas
+  function addRow(){
+    const cont = document.getElementById('rows-container');
+    const tmpl = cont.querySelector('.row').cloneNode(true);
+    tmpl.querySelectorAll('input').forEach(i => i.value='');
+    cont.appendChild(tmpl);
+  }
+
+  // Fecha: abrir picker nativo
+  document.getElementById('fecha')
+    .addEventListener('click', e => {
+      if (typeof e.target.showPicker === 'function') e.target.showPicker();
+    });
+
+  // Selector de áreas
+  const btnArea  = document.getElementById('btn-area');
+  const ddArea   = document.getElementById('dd-area');
+  const chipsBox = document.getElementById('chips');
+  const areaWrap = document.getElementById('area-select');
+
+  function renderChips(){
+    chipsBox.innerHTML = '';
+    ddArea.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+      if(cb.checked){
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip';
+        chip.textContent = cb.value;
+        chip.addEventListener('click', ()=>{
+          cb.checked = false;
+          renderChips();
+        });
+        chipsBox.appendChild(chip);
+      }
+    });
+  }
+
+  btnArea.addEventListener('click', e=>{
+    e.stopPropagation();
+    ddArea.classList.toggle('open');
+    ddArea.setAttribute('aria-hidden', !ddArea.classList.contains('open'));
+  });
+
+  ddArea.addEventListener('change', renderChips);
+  document.getElementById('dd-cerrar').addEventListener('click', ()=>{
+    ddArea.classList.remove('open');
+    ddArea.setAttribute('aria-hidden','true');
+  });
+
+  document.addEventListener('click', e=>{
+    if(!areaWrap.contains(e.target)){
+      ddArea.classList.remove('open');
+      ddArea.setAttribute('aria-hidden','true');
+    }
+  });
+</script>
 </body>
 </html>
